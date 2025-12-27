@@ -10,3 +10,20 @@ are implemented manually in PyTorch **without using high-level Transformer libra
 This repository is intended as a **clean, educational reference**
 for understanding how Transformers work internally.
 
+## What This Repository Demonstrates
+
+This project implements the original Transformer architecture end to end, focusing on
+clarity and correctness rather than library usage.
+
+Specifically, it includes:
+
+- A complete Encoder–Decoder Transformer architecture.
+- Scaled dot-product attention and multi-head self-attention.
+- Sinusoidal positional encoding.
+- Residual connections and layer normalization.
+- Stacked encoder blocks.
+- Decoder blocks with masked self-attention and encoder–decoder (cross) attention.
+- Padding masks and causal (look-ahead) masks.
+- An end-to-end training pipeline on a toy language modeling task.
+- Autoregressive text generation using a trained model.
+
