@@ -63,3 +63,59 @@ class DecoderBlock(nn.Module):
         x = self.norm3(x + self.dropout(ffn_out))
 
         return x
+
+class Decoder(nn.Module):
+    """
+    Transformer Decoder consisting of stacked decoder blocks.
+    """
+
+    def __init__(
+        self,
+        vocab_size: int,
+        d_model: int,
+        n_heads: int,
+        d_ff: int,
+        n_layers: int,
+        dropout: float = 0.1,
+    ):
+        super().__init__()
+
+        from model.embedding import TokenEmbedding
+        from model.positional_encoding import PositionalEncoding
+
+        self.embedding = TokenEmbedding(vocab_size, d_model)
+        self.positional_encoding = PositionalEncoding(d_model)
+
+        self.layers = nn.ModuleList(
+            [
+                DecoderBlock(d_model, n_heads, d_ff, dropout)
+                for _ in range(n_layers)
+            ]
+        )
+
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(
+        self,
+        x: torch.Tensor,
+        enc_out: torch.Tensor,
+        tgt_mask: torch.Tensor | None = None,
+        src_mask: torch.Tensor | None = None,
+    ):
+        """
+        Args:
+            x: (batch_size, tgt_seq_len)
+            enc_out: (batch_size, src_seq_len, d_model)
+
+        Returns:
+            Tensor of shape (batch_size, tgt_seq_len, d_model)
+        """
+
+        x = self.embedding(x)
+        x = self.positional_encoding(x)
+        x = self.dropout(x)
+
+        for layer in self.layers:
+            x = layer(x, enc_out, tgt_mask, src_mask)
+
+        return x
