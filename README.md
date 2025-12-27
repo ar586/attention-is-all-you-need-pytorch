@@ -101,5 +101,18 @@ Run the training script from the project root:
 ```bash
 python training/train.py
 
+## Example Output
+
+Below is an example of training and generation output produced by this implementation
+when run on the included toy dataset.
+
+```text
+Epoch 1, Loss: 15.72
+Epoch 10, Loss: 1.05
+Epoch 40, Loss: 0.48
+
+--- Text Generation ---
+hello transformer transformer
+
 
 
