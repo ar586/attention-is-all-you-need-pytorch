@@ -84,4 +84,22 @@ The `training/` directory contains a minimal training pipeline used to
 verify correctness and demonstrate autoregressive text generation.
 
 
+### Requirements
+- Python 3.8+
+- PyTorch
+
+Install dependencies:
+
+```bash
+pip install torch
+
+
+### Training
+
+Run the training script from the project root:
+
+```bash
+python training/train.py
+
+
 
