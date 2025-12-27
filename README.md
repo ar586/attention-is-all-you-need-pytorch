@@ -99,7 +99,7 @@ pip install torch
 Run the training script from the project root:
 
 ```bash
-python training/train.py
+python training/train.py```
 
 ## Example Output
 
