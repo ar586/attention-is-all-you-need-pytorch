@@ -91,7 +91,7 @@ verify correctness and demonstrate autoregressive text generation.
 Install dependencies:
 
 ```bash
-pip install torch
+pip install torch```
 
 
 ### Training
