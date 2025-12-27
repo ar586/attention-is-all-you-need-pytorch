@@ -59,3 +59,29 @@ It consists of:
 The final decoder output is projected to the vocabulary space using a linear layer.
 
 
+## Project Structure
+
+The repository is organized to keep model architecture, training logic,
+and experiments clearly separated.
+
+model/
+├── embedding.py            # Token embedding layer
+├── positional_encoding.py  # Sinusoidal positional encoding
+├── attention.py            # Scaled dot-product and multi-head attention
+├── encoder.py              # Encoder blocks and encoder stack
+├── decoder.py              # Decoder blocks and decoder stack
+└── transformer.py          # Full Transformer (encoder + decoder)
+
+training/
+├── dataset.py              # Toy dataset for language modeling
+├── utils.py                # Masking utilities
+└── train.py                # Training loop and text generation
+
+The `model/` directory contains the complete Transformer architecture,
+implemented in a modular and reusable way.
+
+The `training/` directory contains a minimal training pipeline used to
+verify correctness and demonstrate autoregressive text generation.
+
+
+
